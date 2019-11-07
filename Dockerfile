@@ -9,7 +9,7 @@ RUN apk add --no-cache \
 && pip3 install pyyaml \
 && git clone https://github.com/BwanaFr/minitel-server.git \
 && apk del --no-cache git \
-&&  rm -rf /var/cache/apk/* \
+&& rm -rf /var/cache/apk/* \
            /tmp/* \
            /var/tmp/*
 
