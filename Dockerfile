@@ -1,11 +1,11 @@
-FROM alpine:latest
+FROM python:3-alpine
 
 MAINTAINER Mathieu Donze <mathieu.donze@cern.ch>
 
 #Install python and our application
 RUN apk add --no-cache \
-      python3 \
       git \
+&& python3 -m pip install --upgrade pip \
 && pip3 install pyyaml \
 && git clone https://github.com/BwanaFr/minitel-server.git \
 && apk del --no-cache git \
