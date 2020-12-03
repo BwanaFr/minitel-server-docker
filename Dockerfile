@@ -11,7 +11,13 @@ RUN apk add --no-cache \
 && apk del --no-cache git \
 && rm -rf /var/cache/apk/* \
            /tmp/* \
-           /var/tmp/*
+           /var/tmp/* \
+           /minitel-server/.git* \
+           /minitel-server/README.md \
+&& mkdir -p /pages \
+&& mv /minitel-server/pages /pages
+
+VOLUME /pages
 
 WORKDIR /minitel-server
 
@@ -19,5 +25,7 @@ EXPOSE 3611/tcp 3614/tcp 3615/tcp
 
 ADD docker-entrypoint.sh /docker-entrypoint.sh
 RUN chmod +x /docker-entrypoint.sh
+ADD configuration.yaml .
+ADD logging.yaml .
 
 ENTRYPOINT ["/docker-entrypoint.sh"]
